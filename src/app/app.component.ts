@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   constructor(private serverHttpService: ServerHttpService) {
   }
   ngOnInit(): void {
-    this.serverHttpService.getALL().subscribe((data)=>{
+    this.serverHttpService.getSummary().subscribe((data) => {
       console.log(data);
     });
   }
