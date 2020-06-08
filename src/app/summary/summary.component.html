@@ -5,8 +5,9 @@
     </th>
   </tr>
   <tr>
-    <td *ngFor="let data of globalData | keyvalue">
-      {{data.value}}
+    <td *ngFor="let data of globalData | keyvalue"
+        [style.text-align]="(+data.value).toString()===data.value.toString() ? 'right':'left'">
+      {{(+data.value).toString() === data.value.toString() ? (data.value | number: '0.0') : data.value}}
     </td>
   </tr>
 
@@ -22,9 +23,12 @@
     </tr>
 
     <tr *ngFor="let rowData of countriesData">
-      <td *ngFor="let data of rowData | keyvalue">
+      <td *ngFor="let data of rowData | keyvalue"
+          [style.text-align]="(+data.value).toString()===data.value.toString()? 'right':'left'">
         <span *ngIf="data.key==='Date'">{{data.value | date: 'shortDate'}}</span>
-        <span *ngIf="data.key!=='Date'">{{data.value}}</span>
+        <span *ngIf="data.key!=='Date'">
+          {{(+data.value).toString() === data.value.toString() ? (data.value | number: '0.0') : data.value}}
+        </span>
       </td>
     </tr>
 
