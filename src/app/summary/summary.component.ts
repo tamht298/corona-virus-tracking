@@ -9,15 +9,17 @@ import {ServerHttpService} from '../services/server-http.service';
 export class SummaryComponent implements OnInit {
 
   globalData: any;
+  countriesData = [];
   constructor(private serverHttpService: ServerHttpService) { }
 
   ngOnInit(): void {
-
+    this.getSummary();
   }
 
   getSummary(){
-    this.serverHttpService.getSummary().subscribe((data)=>{
+    this.serverHttpService.getSummary().subscribe((data) => {
       this.globalData = data.Global;
+      this.countriesData = data.Countries;
     });
   }
 

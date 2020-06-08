@@ -1,1 +1,33 @@
-<p>summary works!</p>
+<table id="summary">
+  <tr>
+    <th *ngFor="let data of globalData | keyvalue">
+      {{data.key}}
+    </th>
+  </tr>
+  <tr>
+    <td *ngFor="let data of globalData | keyvalue">
+      {{data.value}}
+    </td>
+  </tr>
+
+
+</table>
+<br>
+<div *ngIf="countriesData && countriesData.length>0">
+  <table id="">
+    <tr>
+      <th *ngFor="let row of countriesData[0] | keyvalue">
+        {{row.key}}
+      </th>
+    </tr>
+
+    <tr *ngFor="let rowData of countriesData">
+      <td *ngFor="let data of rowData | keyvalue">
+        <span *ngIf="data.key==='Date'">{{data.value | date: 'shortDate'}}</span>
+        <span *ngIf="data.key!=='Date'">{{data.value}}</span>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
