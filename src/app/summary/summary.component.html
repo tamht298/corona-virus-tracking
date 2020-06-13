@@ -19,6 +19,8 @@
     <tr>
       <th *ngFor="let row of countriesData[0] | keyvalue">
         {{row.key}}
+        <span (click)="sortBy(row.key, 'desc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy(row.key, 'asc')"><i class="fa fa-chevron-down"></i></span>
       </th>
     </tr>
 

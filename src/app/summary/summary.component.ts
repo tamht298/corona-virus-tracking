@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerHttpService} from '../services/server-http.service';
-
+import  _ from 'lodash';
 @Component({
   selector: 'dz-corona-summary',
   templateUrl: './summary.component.html',
@@ -23,4 +23,7 @@ export class SummaryComponent implements OnInit {
     });
   }
 
+  sortBy(key, dir){
+    this.countriesData = _.orderBy(this.countriesData,key, dir )
+  }
 }
