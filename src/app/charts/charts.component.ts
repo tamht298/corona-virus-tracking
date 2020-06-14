@@ -7,6 +7,7 @@ import {ServerHttpService} from '../services/server-http.service';
 import {ChartOptions} from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import {Criteria} from '../models/criteria.enum';
+import {DecimalPipe} from '@angular/common';
 
 @Component({
   selector: 'dz-corona-charts',
@@ -60,10 +61,10 @@ export class ChartsComponent implements OnInit {
   barChartPlugins = [pluginDataLabels];
 
   totalCountriesSelected = Array(10).fill(0).map((v, i) => i + 1);
-  currentSelectedTotalCountries = 5;
+  currentSelectedTotalCountries = 4;
   currentSelectedCriteria = Criteria.TotalConfirmed;
 
-  constructor(private httpService: ServerHttpService) {
+  constructor(private httpService: ServerHttpService, private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit(): void {
@@ -72,7 +73,7 @@ export class ChartsComponent implements OnInit {
       this.summaryData = data;
       this.globalData = this.summaryData?.Global;
       this.countriesData = this.summaryData?.Countries;
-      this.buildChart('TotalConfirmed', 5);
+      this.buildChart('TotalConfirmed', this.currentSelectedTotalCountries);
     });
   }
 
@@ -88,11 +89,10 @@ export class ChartsComponent implements OnInit {
     data.forEach((item) => {
       this.chartLabels.push(item.Country);
     });
-
     for (let key of this.keys) {
       this.chartData[i].data = [];
       for (let country of this.countriesShowing) {
-        this.chartData[i].data.push(country[`${key}`]);
+        this.chartData[i].data.push(country[`${key}`] );
       }
       i++;
     }
@@ -104,14 +104,12 @@ export class ChartsComponent implements OnInit {
     this.drawChart(countries);
   }
 
-
   onChartClick(event) {
     // console.log(event);
   }
 
   changeTotalCountries(event) {
-    this.currentSelectedTotalCountries = +event.target.value || 5;
-
+    this.currentSelectedTotalCountries = event.target.value || 4;
     this.buildChart(Criteria.TotalConfirmed, this.currentSelectedTotalCountries);
   }
 
