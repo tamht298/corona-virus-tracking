@@ -3,7 +3,7 @@
 
 <table matSort (matSortChange)="sortData($event)">
   <div class="search">
-    <input type="text" class="searchTerm" placeholder="Which country are you looking for?">
+    <input type="text" class="searchTerm" placeholder="Which country are you looking for?" [(ngModel)]="querySearch">
     <button type="submit" class="searchButton" name="search-button">
       <i class="fa fa-search"></i>
     </button>
@@ -33,7 +33,7 @@
     </th>
   </tr>
   <ng-container *ngIf="countriesData && countriesData.length>0">
-    <tr *ngFor="let rowData of countriesData" class="row-data">
+    <tr *ngFor="let rowData of countriesData | search: querySearch" class="row-data">
       <td [style.text-align]="'left'" style="display: flex; align-items: center;"><img
         src="https://www.countryflags.io/{{rowData.CountryCode}}/flat/16.png" style="margin-right: 4px"
         alt="Country's Flag">{{rowData.Country}}</td>
