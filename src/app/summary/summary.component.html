@@ -1,37 +1,54 @@
-<table id="summary">
-  <tr>
-    <th *ngFor="let data of globalData | keyvalue">
-      {{data.key}}
-    </th>
-  </tr>
-  <tr>
-    <td *ngFor="let data of globalData | keyvalue"
-        [style.text-align]="(+data.value).toString()===data.value.toString() ? 'right':'left'">
-      {{(+data.value).toString() === data.value.toString() ? (data.value | number: '0.0') : data.value}}
-    </td>
-  </tr>
-
-
-</table>
-<br>
 <div *ngIf="countriesData && countriesData.length>0">
   <table id="">
     <tr>
-      <th *ngFor="let row of countriesData[0] | keyvalue">
-        {{row.key}}
-        <span (click)="sortBy(row.key, 'desc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy(row.key, 'asc')"><i class="fa fa-chevron-down"></i></span>
+      <th>
+        Country
+        <span (click)="sortBy('Country', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('Country', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        New Confirmed
+        <span (click)="sortBy('NewConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('NewConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        Total Confirmed
+        <span (click)="sortBy('TotalConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('TotalConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        New Deaths
+        <span (click)="sortBy('NewDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('NewDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        Total Deaths
+        <span (click)="sortBy('TotalDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('TotalDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        New Recovered
+        <span (click)="sortBy('NewRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('NewRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>
+      </th>
+      <th>
+        Total Recovered
+        <span (click)="sortBy('TotalRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>
+        <span (click)="sortBy('TotalRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>
       </th>
     </tr>
 
-    <tr *ngFor="let rowData of countriesData">
-      <td *ngFor="let data of rowData | keyvalue"
-          [style.text-align]="(+data.value).toString()===data.value.toString()? 'right':'left'">
-        <span *ngIf="data.key==='Date'">{{data.value | date: 'shortDate'}}</span>
-        <span *ngIf="data.key!=='Date'">
-          {{(+data.value).toString() === data.value.toString() ? (data.value | number: '0.0') : data.value}}
-        </span>
-      </td>
+    <tr *ngFor="let rowData of countriesData" class="row-data">
+      <td [style.text-align]="'left'" style="display: flex; align-items: center;"><img
+        src="https://www.countryflags.io/{{rowData.CountryCode}}/flat/16.png" style="margin-right: 4px"
+        alt="Country's Flag">{{rowData.Country}}</td>
+      <td [style.text-align]="'right'">{{rowData.NewConfirmed | number: "0.0"}}</td>
+      <td
+        [style.text-align]="'right'">{{rowData.TotalConfirmed | number: "0.0"}}</td>
+      <td [style.text-align]="'right'">{{rowData.NewDeaths | number: "0.0"}}</td>
+      <td [style.text-align]="'right'">{{rowData.TotalDeaths | number: "0.0"}}</td>
+      <td [style.text-align]="'right'">{{rowData.NewRecovered | number: "0.0"}}</td>
+      <td [style.text-align]="'right'">{{rowData.TotalRecovered | number: "0.0"}}</td>
     </tr>
 
   </table>

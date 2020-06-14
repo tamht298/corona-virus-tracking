@@ -1,0 +1,35 @@
+<div *ngIf="summaryData" class="container-chart" >
+  <div class="chart">
+    <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      [plugins]="barChartPlugins"
+      [colors]="chartColors"
+      (chartClick)="onChartClick($event)">
+    </canvas>
+  </div>
+  <div class="chart__options">
+    <div class="chart__options--top">
+      <span>Show Top </span>
+      <select (change)="changeTotalCountries($event)">
+        <option *ngFor="let i of totalCountriesSelected" [selected]="i === currentSelectedTotalCountries">{{i}}</option>
+      </select> of {{currentSelectedCriteria}}
+      <br>
+      <div class="wrapper-radio">
+        <div *ngFor="let criteria of keys" class="radio-criteria">
+          <div class="radio-btn">
+            <input type="radio" id="{{criteria}}"
+                   name="criteria" value="{{criteria}}" [ngModel]="currentSelectedCriteria" (change)="changeCriteria(criteria)"/>
+            <label for="{{criteria}}">{{criteria}}</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

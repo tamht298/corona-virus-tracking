@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { SummaryComponent } from './summary/summary.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsComponent } from './charts/charts.component';
+import {ChartsModule} from 'ng2-charts';
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    SummaryComponent
+    SummaryComponent,
+    ChartsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ChartsModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
