@@ -16,7 +16,7 @@ export class SummaryComponent implements OnInit, OnChanges {
   @Input() summaryData: CoronaSummary;
   globalData: any;
   countriesData: Country[] = [];
-
+  querySearch: any;
   constructor(private serverHttpService: ServerHttpService, private searchPipe: SearchPipe) {
   }
 
@@ -32,8 +32,6 @@ export class SummaryComponent implements OnInit, OnChanges {
   // sortBy(key, dir) {
   //   this.countriesData = _.orderBy(this.countriesData, key, dir);
   // }
-  querySearch: any;
-
 
   sortData(sort: Sort) {
     const data = this.countriesData.slice();
@@ -70,6 +68,5 @@ export class SummaryComponent implements OnInit, OnChanges {
 
   search(event) {
     this.countriesData = this.searchPipe.transform(this.countriesData, event.target.value);
-    console.log(event.target.value)
   }
 }
