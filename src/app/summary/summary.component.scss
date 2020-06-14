@@ -1,8 +1,11 @@
+$accentColor: #0c5d7d;
+
 table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   overflow-x: scroll;
-  margin: 10px auto
+  margin: 10px auto;
+  width: calc(100% - 10)
 }
 
 table td, table th {
@@ -10,9 +13,13 @@ table td, table th {
   padding: 8px;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {
+  background-color: #ddd;
+}
 
 table th {
   padding-top: 12px;
@@ -22,6 +29,39 @@ table th {
   color: white;
 }
 
-.row-data td{
+.row-data td {
   padding: 15px 10px
+}
+
+.search {
+  width: 30%;
+  position: relative;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.searchTerm {
+  border: 3px solid lighten($accentColor, 20%);
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: $accentColor;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid lighten($accentColor, 20%);
+  background: lighten($accentColor, 30%);
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }

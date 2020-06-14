@@ -2,3 +2,7 @@
 <dz-corona-charts></dz-corona-charts>
 <h2 class="title">Ranking the global affection of the corona virus</h2>
 <dz-corona-summary [summaryData]="summaryData"></dz-corona-summary>
+<ngx-skeleton-loader *ngIf="isLoading"
+                     count="5" count="5"
+                     [theme]="{ 'border-radius': '0', height: '50px' }">
+</ngx-skeleton-loader>

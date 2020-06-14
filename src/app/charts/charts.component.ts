@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {CoronaSummary} from '../models/corona-summary';
 import {Global} from '../models/global';
 import {Country} from '../models/country';
@@ -7,7 +7,6 @@ import {ServerHttpService} from '../services/server-http.service';
 import {ChartOptions} from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import {Criteria} from '../models/criteria.enum';
-import {DecimalPipe} from '@angular/common';
 
 @Component({
   selector: 'dz-corona-charts',
@@ -15,7 +14,7 @@ import {DecimalPipe} from '@angular/common';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
-
+  isLoading = true;
   summaryData: CoronaSummary;
   globalData: Global;
   countriesData: Country[];
@@ -64,7 +63,7 @@ export class ChartsComponent implements OnInit {
   currentSelectedTotalCountries = 4;
   currentSelectedCriteria = Criteria.TotalConfirmed;
 
-  constructor(private httpService: ServerHttpService, private decimalPipe: DecimalPipe) {
+  constructor(private httpService: ServerHttpService) {
   }
 
   ngOnInit(): void {
@@ -92,7 +91,7 @@ export class ChartsComponent implements OnInit {
     for (let key of this.keys) {
       this.chartData[i].data = [];
       for (let country of this.countriesShowing) {
-        this.chartData[i].data.push(country[`${key}`] );
+        this.chartData[i].data.push(country[`${key}`]);
       }
       i++;
     }
@@ -102,6 +101,7 @@ export class ChartsComponent implements OnInit {
     this.resetChartData();
     let countries = this.getCountriesWithCriteria(criteria, 'desc', numberCountry);
     this.drawChart(countries);
+    this.isLoading = false;
   }
 
   onChartClick(event) {
@@ -126,7 +126,7 @@ export class ChartsComponent implements OnInit {
   }
 
   changeCriteria(value) {
-    this.currentSelectedCriteria = Criteria[this.keys.find(item=>item===value)];
-    this.buildChart(this.currentSelectedCriteria, this.currentSelectedTotalCountries)
+    this.currentSelectedCriteria = Criteria[this.keys.find(item => item === value)];
+    this.buildChart(this.currentSelectedCriteria, this.currentSelectedTotalCountries);
   }
 }

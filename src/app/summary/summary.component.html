@@ -1,43 +1,51 @@
-<div *ngIf="countriesData && countriesData.length>0">
-  <table id="">
-    <tr>
-      <th>
-        Country
-        <span (click)="sortBy('Country', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('Country', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        New Confirmed
-        <span (click)="sortBy('NewConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('NewConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        Total Confirmed
-        <span (click)="sortBy('TotalConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('TotalConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        New Deaths
-        <span (click)="sortBy('NewDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('NewDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        Total Deaths
-        <span (click)="sortBy('TotalDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('TotalDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        New Recovered
-        <span (click)="sortBy('NewRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('NewRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-      <th>
-        Total Recovered
-        <span (click)="sortBy('TotalRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>
-        <span (click)="sortBy('TotalRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>
-      </th>
-    </tr>
+<!--<input type="text" class="form-control" placeholder="Search" [(ngModel)]="querySearch" (input)="search($event)">-->
 
+
+<table matSort (matSortChange)="sortData($event)">
+  <div class="search">
+    <input type="text" class="searchTerm" placeholder="Which country are you looking for?">
+    <button type="submit" class="searchButton">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+  <tr>
+    <th mat-sort-header="Country">
+      Country
+      <!--        <span (click)="sortBy('Country', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('Country', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="NewConfirmed">
+      New Confirmed
+      <!--        <span (click)="sortBy('NewConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('NewConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="TotalConfirmed">
+      Total Confirmed
+      <!--        <span (click)="sortBy('TotalConfirmed', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('TotalConfirmed', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="NewDeaths">
+      New Deaths
+      <!--        <span (click)="sortBy('NewDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('NewDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="TotalDeaths">
+      Total Deaths
+      <!--        <span (click)="sortBy('TotalDeaths', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('TotalDeaths', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="NewRecovered">
+      New Recovered
+      <!--        <span (click)="sortBy('NewRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('NewRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+    <th mat-sort-header="TotalRecovered">
+      Total Recovered
+      <!--        <span (click)="sortBy('TotalRecovered', 'asc')"><i class="fa fa-chevron-up"></i></span>-->
+      <!--        <span (click)="sortBy('TotalRecovered', 'desc')"><i class="fa fa-chevron-down"></i></span>-->
+    </th>
+  </tr>
+  <ng-container *ngIf="countriesData && countriesData.length>0">
     <tr *ngFor="let rowData of countriesData" class="row-data">
       <td [style.text-align]="'left'" style="display: flex; align-items: center;"><img
         src="https://www.countryflags.io/{{rowData.CountryCode}}/flat/16.png" style="margin-right: 4px"
@@ -50,7 +58,7 @@
       <td [style.text-align]="'right'">{{rowData.NewRecovered | number: "0.0"}}</td>
       <td [style.text-align]="'right'">{{rowData.TotalRecovered | number: "0.0"}}</td>
     </tr>
+  </ng-container>
 
-  </table>
-</div>
+</table>
 

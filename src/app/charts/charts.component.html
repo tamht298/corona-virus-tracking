@@ -28,8 +28,11 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </div>
+
+<ngx-skeleton-loader *ngIf="isLoading"
+  count="5" count="5"
+  [theme]="{ 'border-radius': '0', height: '50px' }">
+</ngx-skeleton-loader>
