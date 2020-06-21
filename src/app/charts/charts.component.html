@@ -16,7 +16,7 @@
     <div class="chart__options--top">
       <span>Show Top </span>
       <select (change)="changeTotalCountries($event)">
-        <option *ngFor="let i of totalCountriesSelected" [selected]="i === currentSelectedTotalCountries">{{i}}</option>
+        <option *ngFor="let i of totalCountriesSelected" [value]="i" [selected]="i === currentSelectedTotalCountries">{{i}}</option>
       </select> of {{currentSelectedCriteria}}
       <br>
       <div class="wrapper-radio">

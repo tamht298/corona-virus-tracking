@@ -110,7 +110,7 @@ export class ChartsComponent implements OnInit {
 
   changeTotalCountries(event) {
     this.currentSelectedTotalCountries = event.target.value || 4;
-    this.buildChart(Criteria.TotalConfirmed, this.currentSelectedTotalCountries);
+    this.buildChart(this.currentSelectedCriteria, this.currentSelectedTotalCountries);
   }
 
   resetChartData() {
